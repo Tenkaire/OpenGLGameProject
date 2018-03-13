@@ -19,13 +19,15 @@ public class MainGame {
 				-0.5f, 0.5f, 0f,
 				-0.5f, -0.5f, 0f,
 				0.5f, -0.5f,0f, // left bottom triangle
-				
-				0.5f, -0.5f, 0f,
-				0.5f, 0.5f, 0f,
-				-0.5f, 0.5f, 0f // right top triangle
+				0.5f, 0.5f, 0f // right top triangle
 		};
 		
-		RawModel model = loader.loadToVAO(vertices);
+		int[] indices = {
+				0,1,3,	// top left triangle
+				3,1,2	// bottom right triangle
+		};
+		
+		RawModel model = loader.loadToVAO(vertices,indices);
 		
 		while(!Display.isCloseRequested()) {
 			
