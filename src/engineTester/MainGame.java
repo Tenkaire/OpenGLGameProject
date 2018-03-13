@@ -6,6 +6,7 @@ import renderEngine.DisplayManager;
 import renderEngine.Loader;
 import renderEngine.RawModel;
 import renderEngine.Renderer;
+import shaders.staticShader;
 
 public class MainGame {
 
@@ -14,12 +15,13 @@ public class MainGame {
 		
 		Loader loader = new Loader();
 		Renderer renderer = new Renderer();
+		staticShader shader = new staticShader();
 		
 		float[] vertices = {
 				-0.5f, 0.5f, 0f,
 				-0.5f, -0.5f, 0f,
-				0.5f, -0.5f,0f, // left bottom triangle
-				0.5f, 0.5f, 0f // right top triangle
+				0.5f, -0.5f,0f, 
+				0.5f, 0.5f, 0f 
 		};
 		
 		int[] indices = {
@@ -34,10 +36,12 @@ public class MainGame {
 			renderer.prepare();
 			//game logic
 			// rendering
+			shader.start();
 			renderer.render(model);
+			shader.stop();
 			DisplayManager.updateDisplay();
 		}
-		
+		shader.deleteAll();
 		loader.DeleteAll();
 		
 		DisplayManager.updateDisplay();
