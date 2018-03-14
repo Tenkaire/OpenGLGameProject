@@ -2,11 +2,13 @@ package engineTester;
 
 import org.lwjgl.opengl.Display;
 
+import models.RawModel;
+import models.TextureModel;
 import renderEngine.DisplayManager;
 import renderEngine.Loader;
-import renderEngine.RawModel;
 import renderEngine.Renderer;
 import shaders.staticShader;
+import textures.ModelTexture;
 
 public class MainGame {
 
@@ -29,7 +31,16 @@ public class MainGame {
 				3,1,2	// bottom right triangle
 		};
 		
-		RawModel model = loader.loadToVAO(vertices,indices);
+		float[] textureCoords = {
+				0,0,	//V0
+				0,1,	//V1
+				1,1,	//V2
+				1,0		//V3
+		};
+		
+		RawModel model = loader.loadToVAO(vertices,textureCoords, indices);
+		ModelTexture texture = new ModelTexture(loader.loadTexture("boy"));
+		TextureModel texturedModel = new TextureModel(model, texture);
 		
 		while(!Display.isCloseRequested()) {
 			
@@ -37,12 +48,13 @@ public class MainGame {
 			//game logic
 			// rendering
 			shader.start();
-			renderer.render(model);
+			renderer.render(texturedModel);
+//			renderer.render(model);
 			shader.stop();
 			DisplayManager.updateDisplay();
 		}
 		shader.deleteAll();
-		loader.DeleteAll();
+		loader.deleteAll();
 		
 		DisplayManager.updateDisplay();
 
