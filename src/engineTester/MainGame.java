@@ -18,8 +18,8 @@ public class MainGame {
 		DisplayManager.createDisplay();
 		
 		Loader loader = new Loader();
-		Renderer renderer = new Renderer();
 		staticShader shader = new staticShader();
+		Renderer renderer = new Renderer(shader);
 		
 		float[] vertices = {
 				-0.5f, 0.5f, 0f,
@@ -43,11 +43,10 @@ public class MainGame {
 		RawModel model = loader.loadToVAO(vertices,textureCoords, indices);
 		ModelTexture texture = new ModelTexture(loader.loadTexture("boy"));
 		TextureModel staticModel = new TextureModel(model, texture);
-		Entity entity = new Entity(staticModel, new Vector3f(-1,0,0),0,0,0,1);
+		Entity entity = new Entity(staticModel, new Vector3f(0,0,-1),0,0,0,1);
 		
 		while(!Display.isCloseRequested()) {
-			entity.increasPosition(0.002f, 0, 0);
-			entity.increaseRotation(0, 1, 0);
+			entity.increasPosition(0, 0, -0.02f);
 			
 			renderer.prepare();
 			//game logic
