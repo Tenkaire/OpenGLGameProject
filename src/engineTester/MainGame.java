@@ -25,16 +25,19 @@ public class MainGame {
 		Renderer renderer = new Renderer(shader);
 		
 		RawModel model = OBJLoader.loadOBJModel("dragon", loader);
-		ModelTexture texture = new ModelTexture(loader.loadTexture("white"));
-		TextureModel staticModel = new TextureModel(model, texture);
+		TextureModel staticModel = new TextureModel(model, new ModelTexture(loader.loadTexture("white")));
+		ModelTexture texture = staticModel.getTexture();
+		texture.setShineDamper(10);
+		texture.setReflectivity(1);
 		Entity entity = new Entity(staticModel, new Vector3f(0,0,-25),0,0,0,1);
 		Light light = new Light(new Vector3f(0,0,-20),new Vector3f(1,1,1));
 		Camera camera = new Camera();
 		// just wanna try git if it works.
 		
 		while(!Display.isCloseRequested()) {
-//			entity.increaseRotation(0, 1, 0);
+			entity.increaseRotation(0, 1, 0);
 			camera.move();
+			entity.move();
 			renderer.prepare();
 			//game logic
 			// rendering

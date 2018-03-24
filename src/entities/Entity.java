@@ -1,5 +1,6 @@
 package entities;
 
+import org.lwjgl.input.Keyboard;
 import org.lwjgl.util.vector.Vector3f;
 
 import models.TextureModel;
@@ -93,6 +94,21 @@ public class Entity {
 
 	public void setScale(float scale) {
 		this.scale = scale;
+	}
+	
+	public void move() {
+		if(Keyboard.isKeyDown(Keyboard.KEY_UP)) {
+			position.y += 0.05f;
+		}
+		if(Keyboard.isKeyDown(Keyboard.KEY_DOWN)) {
+			position.y -= 0.05f;
+		}
+		if(Keyboard.isKeyDown(Keyboard.KEY_LEFT)) {
+			position.x -= 0.05f;
+		}
+		if(Keyboard.isKeyDown(Keyboard.KEY_RIGHT)) {
+			position.x += 0.05f;
+		}
 	}
 	
 	
