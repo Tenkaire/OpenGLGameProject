@@ -30,6 +30,7 @@ public class MainGame {
 		Entity entity = new Entity(staticModel, new Vector3f(0,0,-25),0,0,0,1);
 		Light light = new Light(new Vector3f(0,0,-20),new Vector3f(1,1,1));
 		Camera camera = new Camera();
+		// just wanna try git if it works.
 		
 		while(!Display.isCloseRequested()) {
 //			entity.increaseRotation(0, 1, 0);
