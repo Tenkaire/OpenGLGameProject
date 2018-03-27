@@ -10,9 +10,9 @@ public class Camera {
 	private float yaw;
 	private float roll;
 	
-	public Camera() {
-		
-	}
+	public Camera() {}
+	
+	
 	
 	public void move() {
 		if(Keyboard.isKeyDown(Keyboard.KEY_W)) {
@@ -28,13 +28,15 @@ public class Camera {
 			position.z += 0.1f;
 		}
 		if(Keyboard.isKeyDown(Keyboard.KEY_UP)) {
+			position.y += 0.1f;
+			
+		}
+		if(Keyboard.isKeyDown(Keyboard.KEY_DOWN)) {
 			if(position.y > 0) {
 				position.y -= 0.1f;
 			}
 		}
-		if(Keyboard.isKeyDown(Keyboard.KEY_DOWN)) {
-			position.y += 0.1f;
-		}
+		
 		
 	
 	}

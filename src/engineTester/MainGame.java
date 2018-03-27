@@ -44,6 +44,11 @@ public class MainGame {
 		TextureModel rock = new TextureModel(OBJLoader.loadOBJModel("rock", loader), 
 				new ModelTexture(loader.loadTexture("rock")));
 		
+		TextureModel ele = new TextureModel(OBJLoader.loadOBJModel("ele", loader), 
+				new ModelTexture(loader.loadTexture("ele")));
+		
+		
+		
 		
 		ModelTexture texture = staticModel.getTexture();
 		texture.setShineDamper(10);
@@ -64,9 +69,12 @@ public class MainGame {
           entities.add(new Entity(grass, new Vector3f(random.nextFloat()*800 - 400,0,random.nextFloat() * -600),0,0,0,1.5f));
       }
       
-      for(int i=0;i<200;i++){
-          entities.add(new Entity(rock, new Vector3f(random.nextFloat()*800 - 400,0,random.nextFloat() * -600),0,0,0,0.5f));
+      for(int i=0;i<10;i++){
+          entities1.add(new Entity(ele, new Vector3f(random.nextFloat()*800 - 400,0,random.nextFloat() * -600),0,0,0,2));
       }
+      
+      
+      
 //		
 //		for(int i = 0; i < 10; i++) {
 //			float x = random.nextFloat() * 100 - 50;
@@ -83,13 +91,13 @@ public class MainGame {
 			camera.move();
 			for(Entity entity:entities){
         	  	renderer.processEntity(entity);
-//    			entity.increaseRotation(0, 1, 0);
+
           	}
 			
-//			for(Entity entity:entities1){
-//        	  	renderer.processEntity(entity);
+			for(Entity entity:entities1){
+        	  	renderer.processEntity(entity);
 //    			entity.increaseRotation(0, 1, 0);
-//          	}
+          	}
 			
 			
 			renderer.processTerrain(terrain);
