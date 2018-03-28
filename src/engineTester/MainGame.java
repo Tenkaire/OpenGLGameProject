@@ -58,6 +58,9 @@ public class MainGame {
 		TextureModel ele = new TextureModel(OBJLoader.loadOBJModel("ele", loader), 
 				new ModelTexture(loader.loadTexture("ele")));
 		
+		TextureModel bubbleTree = new TextureModel(OBJLoader.loadOBJModel("lowPolyTree", loader), 
+				new ModelTexture(loader.loadTexture("lowPolyTree")));
+		
 		
 		
 		
@@ -79,6 +82,7 @@ public class MainGame {
           entities.add(new Entity(staticModel, new Vector3f(random.nextFloat()*800 - 400,0,random.nextFloat() * -600),0,0,0,3));
           entities.add(new Entity(fern, new Vector3f(random.nextFloat()*800 - 400,0,random.nextFloat() * -600),0,0,0,0.5f));
           entities.add(new Entity(grass, new Vector3f(random.nextFloat()*800 - 400,0,random.nextFloat() * -600),0,0,0,1.5f));
+          entities.add(new Entity(bubbleTree, new Vector3f(random.nextFloat()*800 - 400,0,random.nextFloat() * -600),0,0,0,0.3f));   
       }
       
       for(int i=0;i<10;i++){
