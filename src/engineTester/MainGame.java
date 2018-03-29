@@ -10,6 +10,7 @@ import org.lwjgl.util.vector.Vector3f;
 import entities.Camera;
 import entities.Entity;
 import entities.Light;
+import entities.Player;
 import models.RawModel;
 import models.TextureModel;
 import renderEngine.DisplayManager;
@@ -102,9 +103,16 @@ public class MainGame {
 		
 		MasterRenderer renderer = new MasterRenderer();
 		
+		RawModel bunnyModel = OBJLoader.loadOBJModel("stanfordBunny", loader);
+		TextureModel stanfordBunny = new TextureModel(bunnyModel, new ModelTexture(loader.loadTexture("white")));
+		
+		Player player = new Player(stanfordBunny, new Vector3f(0, 0, -50), 0,0,0,0.5f);
+		
 		while(!Display.isCloseRequested()) {
 
 			camera.move();
+			player.move();
+			renderer.processEntity(player);
 			for(Entity entity:entities){
         	  	renderer.processEntity(entity);
 

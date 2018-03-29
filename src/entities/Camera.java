@@ -27,11 +27,11 @@ public class Camera {
 		if(Keyboard.isKeyDown(Keyboard.KEY_S)) {
 			position.z += 0.1f;
 		}
-		if(Keyboard.isKeyDown(Keyboard.KEY_UP)) {
+		if(Keyboard.isKeyDown(Keyboard.KEY_U)) {
 			position.y += 0.1f;
 			
 		}
-		if(Keyboard.isKeyDown(Keyboard.KEY_DOWN)) {
+		if(Keyboard.isKeyDown(Keyboard.KEY_J)) {
 			if(position.y > 0) {
 				position.y -= 0.1f;
 			}
