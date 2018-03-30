@@ -73,7 +73,7 @@ public class MainGame {
 		Light light = new Light(new Vector3f(3000,2000,3000),new Vector3f(1,1,1));
 		Terrain terrain = new Terrain(0,-1, loader,texturePack, blendMap);
 		Terrain terrain2 = new Terrain(-1,-1, loader, texturePack, blendMap);
-		Camera camera = new Camera();
+
 		// just wanna try git if it works.
 		
       List<Entity> entities = new ArrayList<Entity>();
@@ -107,6 +107,7 @@ public class MainGame {
 		TextureModel stanfordBunny = new TextureModel(bunnyModel, new ModelTexture(loader.loadTexture("white")));
 		
 		Player player = new Player(stanfordBunny, new Vector3f(0, 0, -50), 0,0,0,0.5f);
+		Camera camera = new Camera(player);
 		
 		while(!Display.isCloseRequested()) {
 
