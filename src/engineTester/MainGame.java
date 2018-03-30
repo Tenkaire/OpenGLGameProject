@@ -106,7 +106,7 @@ public class MainGame {
 		RawModel bunnyModel = OBJLoader.loadOBJModel("stanfordBunny", loader);
 		TextureModel stanfordBunny = new TextureModel(bunnyModel, new ModelTexture(loader.loadTexture("white")));
 		
-		Player player = new Player(stanfordBunny, new Vector3f(0, 0, -50), 0,0,0,0.5f);
+		Player player = new Player(stanfordBunny, new Vector3f(0, 0, -70), 0,0,0,0.5f);
 		Camera camera = new Camera(player);
 		
 		while(!Display.isCloseRequested()) {
