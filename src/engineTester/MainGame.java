@@ -103,17 +103,25 @@ public class MainGame {
 		
 		MasterRenderer renderer = new MasterRenderer();
 		
-		RawModel man = OBJLoader.loadOBJModel("man", loader);
-		TextureModel manPlayer = new TextureModel(man, new ModelTexture(loader.loadTexture("manTex")));
+//		RawModel man = OBJLoader.loadOBJModel("man", loader);
+//		TextureModel manPlayer = new TextureModel(man, new ModelTexture(loader.loadTexture("manTex")));
+//		
+//		Player player = new Player(manPlayer, new Vector3f(0, 0, -70), 0,0,0,2);
 		
-		Player player = new Player(manPlayer, new Vector3f(0, 0, -70), 0,0,0,2);
-		Camera camera = new Camera(player);
+		RawModel bunny = OBJLoader.loadOBJModel("bunny", loader);
+		TextureModel bunnyPlayer = new TextureModel(bunny, new ModelTexture(loader.loadTexture("white")));
+		
+		Player bPlayer = new Player(bunnyPlayer, new Vector3f(0, 0, -70), 0,0,0,0.5f);
+		
+		Camera camera = new Camera(bPlayer);
 		
 		while(!Display.isCloseRequested()) {
 
 			camera.move();
-			player.move();
-			renderer.processEntity(player);
+//			player.move();
+//			renderer.processEntity(player);
+			bPlayer.move();
+			renderer.processEntity(bPlayer);
 			for(Entity entity:entities){
         	  	renderer.processEntity(entity);
 
