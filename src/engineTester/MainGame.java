@@ -71,8 +71,8 @@ public class MainGame {
 		texture.setReflectivity(1);
 //		Entity entity = new Entity(staticModel, new Vector3f(0,0,-25),0,0,0,1);
 		Light light = new Light(new Vector3f(3000,2000,3000),new Vector3f(1,1,1));
-		Terrain terrain = new Terrain(0,-1, loader,texturePack, blendMap);
-		Terrain terrain2 = new Terrain(-1,-1, loader, texturePack, blendMap);
+		Terrain terrain = new Terrain(0,-1, loader,texturePack, blendMap, "heightmap");
+		Terrain terrain2 = new Terrain(-1,-1, loader, texturePack, blendMap, "heightmap");
 
 		// just wanna try git if it works.
 		
