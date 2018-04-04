@@ -82,7 +82,12 @@ public class MainGame {
       for(int i=0;i<500;i++){
     	  float x = random.nextFloat()*800 - 400;
     	  float z = random.nextFloat() * -600;
-    	  float y = terrain.getHeightOfTerrain(x,z);
+    	  float y;
+    	  if(x > 800 || z < 800){
+    		  y = terrain2.getHeightOfTerrain(x,z);
+    	  }else{
+    		  y = terrain.getHeightOfTerrain(x,z);
+    	  }
     	  // how to check whether it is from terrain or terrain2?
           entities.add(new Entity(staticModel, new Vector3f(x,y,z),0,0,0,3));
           entities.add(new Entity(fern, new Vector3f(x,y,z),0,0,0,0.5f));
@@ -93,7 +98,12 @@ public class MainGame {
       for(int i=0;i<10;i++){
     	  float x = random.nextFloat()*800 - 400;
     	  float z = random.nextFloat() * -600;
-    	  float y = terrain.getHeightOfTerrain(x,z);
+    	  float y;
+    	  if(x > 800 || z < 800){
+    		  y = terrain2.getHeightOfTerrain(x,z);
+    	  }else{
+    		  y = terrain.getHeightOfTerrain(x,z);
+    	  }
           entities1.add(new Entity(ele, new Vector3f(x,y,z),0,0,0,2));
       }
       
@@ -127,7 +137,11 @@ public class MainGame {
 			camera.move();
 //			player.move();
 //			renderer.processEntity(player);
-			bPlayer.move(terrain);
+			if(bPlayer.getPosition().x > 800 || bPlayer.getPosition().z < 800){
+			    bPlayer.move(terrain2);
+			}else{
+				bPlayer.move(terrain);
+			}
 			renderer.processEntity(bPlayer);
 			for(Entity entity:entities){
         	  	renderer.processEntity(entity);
