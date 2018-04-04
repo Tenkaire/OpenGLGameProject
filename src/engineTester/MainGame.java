@@ -44,8 +44,11 @@ public class MainGame {
 		RawModel model = OBJLoader.loadOBJModel("tree", loader);
 		TextureModel staticModel = new TextureModel(model, new ModelTexture(loader.loadTexture("tree")));
 		
-		TextureModel fern = new TextureModel(OBJLoader.loadOBJModel("fern", loader), 
-				new ModelTexture(loader.loadTexture("fern")));
+		
+		ModelTexture fernTextureAtlas = new ModelTexture(loader.loadTexture("fern"));
+		fernTextureAtlas.setNumOfRaws(2);
+		TextureModel fern = new TextureModel(OBJLoader.loadOBJModel("fern", loader), fernTextureAtlas);
+		
 		fern.getTexture().setHasTransparency(true);
 		
 		TextureModel grass = new TextureModel(OBJLoader.loadOBJModel("grassModel", loader), 
@@ -83,15 +86,36 @@ public class MainGame {
     	  float x = random.nextFloat()*800 - 400;
     	  float z = random.nextFloat() * -600;
     	  float y;
-    	  if(x > 800 || z < 800){
+    	  if(x < 0 && z < 0){
     		  y = terrain2.getHeightOfTerrain(x,z);
     	  }else{
     		  y = terrain.getHeightOfTerrain(x,z);
     	  }
     	  // how to check whether it is from terrain or terrain2?
           entities.add(new Entity(staticModel, new Vector3f(x,y,z),0,0,0,3));
-          entities.add(new Entity(fern, new Vector3f(x,y,z),0,0,0,0.5f));
+          x = random.nextFloat()*800 - 400;
+    	  z = random.nextFloat() * -600;
+    	  if(x < 0 && z < 0){
+    		  y = terrain2.getHeightOfTerrain(x,z);
+    	  }else{
+    		  y = terrain.getHeightOfTerrain(x,z);
+    	  }
+          entities.add(new Entity(fern, random.nextInt(4), new Vector3f(x,y,z),0,0,0,0.5f)); // atlases
+          x = random.nextFloat()*800 - 400;
+    	  z = random.nextFloat() * -600;
+    	  if(x < 0 && z < 0){
+    		  y = terrain2.getHeightOfTerrain(x,z);
+    	  }else{
+    		  y = terrain.getHeightOfTerrain(x,z);
+    	  }
           entities.add(new Entity(grass, new Vector3f(x,y,z),0,0,0,1.5f));
+          x = random.nextFloat()*800 - 400;
+    	  z = random.nextFloat() * -600;
+    	  if(x < 0 && z < 0){
+    		  y = terrain2.getHeightOfTerrain(x,z);
+    	  }else{
+    		  y = terrain.getHeightOfTerrain(x,z);
+    	  }
           entities.add(new Entity(bubbleTree, new Vector3f(x,y,z),0,0,0,0.3f));   
       }
       
@@ -99,7 +123,7 @@ public class MainGame {
     	  float x = random.nextFloat()*800 - 400;
     	  float z = random.nextFloat() * -600;
     	  float y;
-    	  if(x > 800 || z < 800){
+    	  if(x < 0 && z < 0){
     		  y = terrain2.getHeightOfTerrain(x,z);
     	  }else{
     		  y = terrain.getHeightOfTerrain(x,z);
@@ -135,9 +159,12 @@ public class MainGame {
 		while(!Display.isCloseRequested()) {
 
 			camera.move();
+			renderer.processTerrain(terrain);
+			renderer.processTerrain(terrain2);
+//			System.out.println("x is " + bPlayer.getPosition().x + "  and z is " + bPlayer.getPosition().z);
 //			player.move();
 //			renderer.processEntity(player);
-			if(bPlayer.getPosition().x > 800 || bPlayer.getPosition().z < 800){
+			if(bPlayer.getPosition().x < 0 && bPlayer.getPosition().z < 0){
 			    bPlayer.move(terrain2);
 			}else{
 				bPlayer.move(terrain);
@@ -154,8 +181,7 @@ public class MainGame {
           	}
 			
 			
-			renderer.processTerrain(terrain);
-			renderer.processTerrain(terrain2);
+			
 			renderer.render(light, camera);
 			DisplayManager.updateDisplay();
 		}

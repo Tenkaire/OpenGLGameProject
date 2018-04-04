@@ -51,6 +51,8 @@ public class EntityRenderer {
 		
 		ModelTexture texture = model.getTexture();
 		
+		shader.loadNumOfRaws(texture.getNumOfRaws());
+		
 		if(texture.isHasTransparency()) {
 			MasterRenderer.disableCulling();
 		}
@@ -74,6 +76,7 @@ public class EntityRenderer {
 		Matrix4f transformationMatrix = Maths.createTransformationMatrix(entity.getPosition(), 
 				entity.getRotX(), entity.getRotY(), entity.getRotZ(), entity.getScale());
 		shader.loadTransformationMatrix(transformationMatrix);
+		shader.loadOffset(entity.getTextureXOffset(), entity.getTextureYOffset());
 	}
 	
 

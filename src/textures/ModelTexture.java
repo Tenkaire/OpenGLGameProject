@@ -10,10 +10,20 @@ public class ModelTexture {
 	private boolean hasTransparency = false;
 	private boolean useFakeLighting = false;
 	
+	private int numOfRaws = 1;
+	
 	public ModelTexture(int id) {
 		this.textureID = id;
 	}
 	
+	public int getNumOfRaws() {
+		return numOfRaws;
+	}
+
+	public void setNumOfRaws(int numOfRaws) {
+		this.numOfRaws = numOfRaws;
+	}
+
 	public boolean isUseFakeLighting() {
 		return useFakeLighting;
 	}
