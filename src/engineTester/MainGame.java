@@ -80,14 +80,21 @@ public class MainGame {
       List<Entity> entities1 = new ArrayList<Entity>();
       Random random = new Random();
       for(int i=0;i<500;i++){
-          entities.add(new Entity(staticModel, new Vector3f(random.nextFloat()*800 - 400,0,random.nextFloat() * -600),0,0,0,3));
-          entities.add(new Entity(fern, new Vector3f(random.nextFloat()*800 - 400,0,random.nextFloat() * -600),0,0,0,0.5f));
-          entities.add(new Entity(grass, new Vector3f(random.nextFloat()*800 - 400,0,random.nextFloat() * -600),0,0,0,1.5f));
-          entities.add(new Entity(bubbleTree, new Vector3f(random.nextFloat()*800 - 400,0,random.nextFloat() * -600),0,0,0,0.3f));   
+    	  float x = random.nextFloat()*800 - 400;
+    	  float z = random.nextFloat() * -600;
+    	  float y = terrain.getHeightOfTerrain(x,z);
+    	  // how to check whether it is from terrain or terrain2?
+          entities.add(new Entity(staticModel, new Vector3f(x,y,z),0,0,0,3));
+          entities.add(new Entity(fern, new Vector3f(x,y,z),0,0,0,0.5f));
+          entities.add(new Entity(grass, new Vector3f(x,y,z),0,0,0,1.5f));
+          entities.add(new Entity(bubbleTree, new Vector3f(x,y,z),0,0,0,0.3f));   
       }
       
       for(int i=0;i<10;i++){
-          entities1.add(new Entity(ele, new Vector3f(random.nextFloat()*800 - 400,0,random.nextFloat() * -600),0,0,0,2));
+    	  float x = random.nextFloat()*800 - 400;
+    	  float z = random.nextFloat() * -600;
+    	  float y = terrain.getHeightOfTerrain(x,z);
+          entities1.add(new Entity(ele, new Vector3f(x,y,z),0,0,0,2));
       }
       
       
@@ -120,7 +127,7 @@ public class MainGame {
 			camera.move();
 //			player.move();
 //			renderer.processEntity(player);
-			bPlayer.move();
+			bPlayer.move(terrain);
 			renderer.processEntity(bPlayer);
 			for(Entity entity:entities){
         	  	renderer.processEntity(entity);
